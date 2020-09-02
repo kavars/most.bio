@@ -22,6 +22,8 @@ class MainPresenter: MainPresenterProtocol {
     // MARK: - Configure View
     func configureView() {
         view.setUpMainView()
+        view.addElementsOnView()
+        view.createConstraints()
     }
     
     // MARK: - MainPresenterProtocol methods

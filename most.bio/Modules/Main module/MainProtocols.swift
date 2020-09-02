@@ -10,6 +10,8 @@ import Foundation
 
 protocol MainViewProtocol: class {
     func setUpMainView()
+    func addElementsOnView()
+    func createConstraints()
 }
 
 protocol MainInteractorProtocol: class {
