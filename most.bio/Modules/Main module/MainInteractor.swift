@@ -12,9 +12,23 @@ class MainInteractor: MainInteractorProtocol {
     // MARK: - Properties
     weak var presenter: MainPresenterProtocol!
     
+    lazy var networkService: NetworkServiceProtocol = NetworkService()
+    
     
     // MARK: - Initializer
     init(presenter: MainPresenterProtocol) {
         self.presenter = presenter
+    }
+    
+    // MARK: - MainInteractorProtocol methods
+    func startApp() {
+        // 1. check internet connection
+        if networkService.isConnected {
+            // get model version to check new version
+            // get new model or continue with old/actual
+        } else {
+           // alert "There is no internet connection"
+        }
+
     }
 }

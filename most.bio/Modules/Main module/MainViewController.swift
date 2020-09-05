@@ -45,7 +45,7 @@ class MainViewController: UIViewController, MainViewProtocol {
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
-//        button.addTarget(self, action: #selector(), for: .touchUpInside)
+        button.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.titleLabel?.textAlignment = .center
@@ -60,6 +60,11 @@ class MainViewController: UIViewController, MainViewProtocol {
         
         return button
     }()
+    
+    // MARK: - Action
+    @objc func startButtonPressed() {
+        presenter.startButtonPressed()
+    }
     
     // MARK: - View Life Circle
     override func viewDidLoad() {

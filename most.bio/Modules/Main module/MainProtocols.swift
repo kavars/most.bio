@@ -15,13 +15,15 @@ protocol MainViewProtocol: class {
 }
 
 protocol MainInteractorProtocol: class {
-    
+    func startApp()
 }
 
 protocol MainPresenterProtocol: class {
     var router: MainRouterProtocol! { set get }
     
     func configureView()
+    
+    func startButtonPressed()
 }
 
 protocol MainConfiguratorProtocol: class {

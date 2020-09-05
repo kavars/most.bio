@@ -27,5 +27,7 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     // MARK: - MainPresenterProtocol methods
-    
+    func startButtonPressed() {
+        interactor.startApp()
+    }
 }
