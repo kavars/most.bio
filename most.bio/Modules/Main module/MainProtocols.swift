@@ -12,6 +12,8 @@ protocol MainViewProtocol: class {
     func setUpMainView()
     func addElementsOnView()
     func createConstraints()
+    
+    func continueWithoutInternetConnection()
 }
 
 protocol MainInteractorProtocol: class {
@@ -24,6 +26,7 @@ protocol MainPresenterProtocol: class {
     func configureView()
     
     func startButtonPressed()
+    func noInternetConnectionAction()
 }
 
 protocol MainConfiguratorProtocol: class {
@@ -31,5 +34,5 @@ protocol MainConfiguratorProtocol: class {
 }
 
 protocol MainRouterProtocol: class {
-    
+    func transmitToLoadSampleController()
 }

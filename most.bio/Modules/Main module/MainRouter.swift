@@ -19,4 +19,8 @@ class MainRouter: MainRouterProtocol {
     }
     
     // MARK: - MainRouterProtocol methods
+    
+    func transmitToLoadSampleController() {
+        print("Go to load sample module")
+    }
 }

@@ -30,4 +30,8 @@ class MainPresenter: MainPresenterProtocol {
     func startButtonPressed() {
         interactor.startApp()
     }
+    
+    func noInternetConnectionAction() {
+        view.continueWithoutInternetConnection()
+    }
 }

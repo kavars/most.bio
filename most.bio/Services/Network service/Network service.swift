@@ -20,20 +20,26 @@ class NetworkService: NetworkServiceProtocol {
             
             let monitor = NWPathMonitor()
             
+            let group = DispatchGroup()
+            group.enter()
+            
             monitor.pathUpdateHandler = { path in
                 if path.status == .satisfied {
                     result = true
                 } else {
                     result = false
                 }
+                group.leave()
             }
             
             let queue = DispatchQueue(label: "most.bio.isConnectedMonitor")
             
             monitor.start(queue: queue)
-            
+
+            group.wait()
+
             monitor.cancel()
-            
+                        
             return result
         }
     }

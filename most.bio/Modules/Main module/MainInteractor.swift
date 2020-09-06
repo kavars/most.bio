@@ -27,7 +27,7 @@ class MainInteractor: MainInteractorProtocol {
             // get model version to check new version
             // get new model or continue with old/actual
         } else {
-           // alert "There is no internet connection"
+            presenter.noInternetConnectionAction()
         }
 
     }

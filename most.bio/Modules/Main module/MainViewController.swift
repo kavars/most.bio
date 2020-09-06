@@ -13,6 +13,7 @@ class MainViewController: UIViewController, MainViewProtocol {
     var presenter: MainPresenterProtocol!
     let configurator: MainConfiguratorProtocol = MainConfigurator()
     
+    // MARK: - Elements
     let logoView: UIImageView = {
         let image = UIImage(named: "icon")
         
@@ -109,6 +110,27 @@ class MainViewController: UIViewController, MainViewProtocol {
                 self.startButton.topAnchor.constraint(equalTo: self.logoView.bottomAnchor, constant: 81),
             ])
         }
+    }
+    
+    func continueWithoutInternetConnection() {
+        let alertController = UIAlertController(title: "Нет интернет соединения", message: "Без интернет соединения не возможно проверить актуальность модели распознования.\nПродолжить без проверки модели?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "Продолжить", style: .default) { action in
+            self.presenter.router.transmitToLoadSampleController()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+
+        if let actionViews = alertController.view.subviews.first?.subviews.first?.subviews {
+            
+            actionViews.first?.backgroundColor = .backgroundPurple
+        }
+
+        alertController.view.tintColor = .smallUltralightPurpleElements
+
+        present(alertController, animated: true)
     }
 }
 
