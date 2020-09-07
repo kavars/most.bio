@@ -14,6 +14,10 @@ protocol MainViewProtocol: class {
     func createConstraints()
     
     func continueWithoutInternetConnection()
+    func newModelVersionAvailible()
+    
+    func noInternetConnectionAtFirstLaunch()
+    func loadModelAtFirstLaunch(_ handler: @escaping (() -> Void))
 }
 
 protocol MainInteractorProtocol: class {
@@ -27,6 +31,11 @@ protocol MainPresenterProtocol: class {
     
     func startButtonPressed()
     func noInternetConnectionAction()
+    func loadNewModelVersionAction()
+    
+    // first launch alerts
+    func noInternetConnectionAtFirstLaunchAction()
+    func loadModelAtFirstLaunchAction(_ handler: @escaping (() -> Void))
 }
 
 protocol MainConfiguratorProtocol: class {

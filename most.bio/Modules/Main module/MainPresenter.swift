@@ -34,4 +34,17 @@ class MainPresenter: MainPresenterProtocol {
     func noInternetConnectionAction() {
         view.continueWithoutInternetConnection()
     }
+    
+    func loadNewModelVersionAction() {
+        view.newModelVersionAvailible()
+    }
+    
+    // First Launch
+    func noInternetConnectionAtFirstLaunchAction() {
+        view.noInternetConnectionAtFirstLaunch()
+    }
+    
+    func loadModelAtFirstLaunchAction(_ handler: @escaping (() -> Void)) {
+        view.loadModelAtFirstLaunch(handler)
+    }
 }

@@ -13,6 +13,7 @@ class MainInteractor: MainInteractorProtocol {
     weak var presenter: MainPresenterProtocol!
     
     lazy var networkService: NetworkServiceProtocol = NetworkService()
+    lazy var appSettingsService: AppSettingsServiceProtocol = AppSettingsService()
     
     
     // MARK: - Initializer
@@ -22,12 +23,42 @@ class MainInteractor: MainInteractorProtocol {
     
     // MARK: - MainInteractorProtocol methods
     func startApp() {
-        // 1. check internet connection
-        if networkService.isConnected {
-            // get model version to check new version
-            // get new model or continue with old/actual
+        
+        // First launch
+        if appSettingsService.savedIsFirstLaunch() {
+            if networkService.isConnected {
+                // load model
+                presenter.loadModelAtFirstLaunchAction {
+                    self.appSettingsService.saveIsFirstLaunch(with: false)
+                }
+            } else {
+                presenter.noInternetConnectionAtFirstLaunchAction()
+            }
+            
         } else {
-            presenter.noInternetConnectionAction()
+            
+            // Check model version
+            if networkService.isConnected {
+                
+                // Check model version
+                self.networkService.versionCheck { [weak self] isNewModelVersion, errorMessage in
+                    if isNewModelVersion {
+                        // new availible
+                        self?.presenter.loadNewModelVersionAction()
+                    } else {
+                        // old is actual
+                        self?.presenter.router.transmitToLoadSampleController()
+                    }
+                    
+                    if !errorMessage.isEmpty {
+                        print("VersionCheck error: " + errorMessage)
+                    }
+                }
+                
+            } else {
+                // reconnect or countinue without check version
+                presenter.noInternetConnectionAction()
+            }
         }
 
     }

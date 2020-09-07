@@ -21,6 +21,7 @@
 		7EA52A40250023440065CA3E /* MainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA52A3F250023440065CA3E /* MainConfigurator.swift */; };
 		7EA52A422500234C0065CA3E /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA52A412500234C0065CA3E /* MainRouter.swift */; };
 		7EA52A44250024260065CA3E /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA52A43250024260065CA3E /* MainProtocols.swift */; };
+		7EDA5B552506853200F2A57F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA5B542506853200F2A57F /* StorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		7EA52A3F250023440065CA3E /* MainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainConfigurator.swift; sourceTree = "<group>"; };
 		7EA52A412500234C0065CA3E /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		7EA52A43250024260065CA3E /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
+		7EDA5B542506853200F2A57F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		7E25B2A52500290C009CA376 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7EDA5B532506852200F2A57F /* Storage Service */,
 				7E14227025043FC700DB5F3D /* App Settings service */,
 				7E14226C250439B400DB5F3D /* Network service */,
 			);
@@ -203,6 +206,14 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
+		7EDA5B532506852200F2A57F /* Storage Service */ = {
+			isa = PBXGroup;
+			children = (
+				7EDA5B542506853200F2A57F /* StorageService.swift */,
+			);
+			path = "Storage Service";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,6 +291,7 @@
 				7EA52A3E250023180065CA3E /* MainPresenter.swift in Sources */,
 				7EA52A422500234C0065CA3E /* MainRouter.swift in Sources */,
 				7EA52A2425001B7B0065CA3E /* MainViewController.swift in Sources */,
+				7EDA5B552506853200F2A57F /* StorageService.swift in Sources */,
 				7E14226F25043A6000DB5F3D /* Network service.swift in Sources */,
 				7EA52A2025001B7B0065CA3E /* AppDelegate.swift in Sources */,
 				7EA52A2225001B7B0065CA3E /* SceneDelegate.swift in Sources */,

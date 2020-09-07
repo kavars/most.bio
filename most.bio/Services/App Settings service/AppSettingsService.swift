@@ -9,22 +9,23 @@
 import Foundation
 
 protocol AppSettingsServiceProtocol: class {
-    func savedModelVersion() -> String
-    func saveModelVersion(with value: String)
+    func savedIsFirstLaunch() -> Bool
+    func saveIsFirstLaunch(with value: Bool)
 }
 
 class AppSettingsService: AppSettingsServiceProtocol {    
-    private let kSavedModelVersion = "most.bio.savedModelVersion"
+    private let kSavedIsFirstLaunch = "most.bio.savedIsFirstLaunch"
     
-    func savedModelVersion() -> String {
-        if let modelVersion = UserDefaults.standard.string(forKey: kSavedModelVersion) {
-            return modelVersion
+    func savedIsFirstLaunch() -> Bool {
+        if UserDefaults.standard.object(forKey: kSavedIsFirstLaunch) != nil {
+            let isFirstLaunch = UserDefaults.standard.bool(forKey: kSavedIsFirstLaunch)
+            return isFirstLaunch
         }
-        return "No model"
+        return true
     }
     
-    func saveModelVersion(with value: String) {
-        UserDefaults.standard.set(value, forKey: kSavedModelVersion)
+    func saveIsFirstLaunch(with value: Bool) {
+        UserDefaults.standard.set(value, forKey: kSavedIsFirstLaunch)
         UserDefaults.standard.synchronize()
     }
 }

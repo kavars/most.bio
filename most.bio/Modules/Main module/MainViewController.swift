@@ -112,6 +112,7 @@ class MainViewController: UIViewController, MainViewProtocol {
         }
     }
     
+    //MARK: - Alerts
     func continueWithoutInternetConnection() {
         let alertController = UIAlertController(title: "Нет интернет соединения", message: "Без интернет соединения не возможно проверить актуальность модели распознования.\nПродолжить без проверки модели?", preferredStyle: .alert)
         
@@ -121,6 +122,69 @@ class MainViewController: UIViewController, MainViewProtocol {
         }
         
         alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+
+        if let actionViews = alertController.view.subviews.first?.subviews.first?.subviews {
+            
+            actionViews.first?.backgroundColor = .backgroundPurple
+        }
+
+        alertController.view.tintColor = .smallUltralightPurpleElements
+
+        present(alertController, animated: true)
+    }
+    
+    func newModelVersionAvailible() {
+        let alertController = UIAlertController(title: "Доступна новая версия модели", message: "Доступна новая версия модели распознавания. Загрузить или продолжить со старой версией?", preferredStyle: .alert)
+        
+        let loadAction = UIAlertAction(title: "Загрузить", style: .default) { action in
+            // load alert
+        }
+        
+        let skipAction = UIAlertAction(title: "Продолжить", style: .default) { action in
+            self.presenter.router.transmitToLoadSampleController()
+        }
+        
+        alertController.addAction(skipAction)
+        alertController.addAction(loadAction)
+
+        if let actionViews = alertController.view.subviews.first?.subviews.first?.subviews {
+            
+            actionViews.first?.backgroundColor = .backgroundPurple
+        }
+
+        alertController.view.tintColor = .smallUltralightPurpleElements
+
+        present(alertController, animated: true)
+    }
+    
+    // First Launch
+    func noInternetConnectionAtFirstLaunch() {
+        let alertController = UIAlertController(title: "Нет интернет соединения", message: "При первом запуске приложения требуется загрузить модель распознавания.\nБез интернет соединения это не возможно сделать. Включите интернет соединение.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "ОК", style: .default)
+        
+        alertController.addAction(okAction)
+
+        if let actionViews = alertController.view.subviews.first?.subviews.first?.subviews {
+            
+            actionViews.first?.backgroundColor = .backgroundPurple
+        }
+
+        alertController.view.tintColor = .smallUltralightPurpleElements
+
+        present(alertController, animated: true)
+    }
+    
+    func loadModelAtFirstLaunch(_ handler: @escaping (() -> Void)) {
+        let alertController = UIAlertController(title: "Загрузка модели", message: "При первом запуске приложения требуется загрузить модель распознавания.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Загрузить", style: .default) { action in
+            // load alert
+            // recieve 'handler()' to load alert
+            handler()
+        }
+        
         alertController.addAction(okAction)
 
         if let actionViews = alertController.view.subviews.first?.subviews.first?.subviews {
