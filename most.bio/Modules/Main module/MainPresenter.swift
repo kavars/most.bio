@@ -47,4 +47,8 @@ class MainPresenter: MainPresenterProtocol {
     func loadModelAtFirstLaunchAction(_ handler: @escaping (() -> Void)) {
         view.loadModelAtFirstLaunch(handler)
     }
+    
+    func updateProgress(progress: Float, totalSize: String) {
+        
+    }
 }

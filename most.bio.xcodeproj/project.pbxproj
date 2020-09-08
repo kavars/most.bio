@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E01F75A2506E11B007574E2 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E01F7592506E11B007574E2 /* DownloadService.swift */; };
 		7E14226B2504207300DB5F3D /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14226A2504207300DB5F3D /* BackgroundView.swift */; };
-		7E14226F25043A6000DB5F3D /* Network service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14226E25043A6000DB5F3D /* Network service.swift */; };
+		7E14226F25043A6000DB5F3D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14226E25043A6000DB5F3D /* NetworkService.swift */; };
 		7E14227225043FE500DB5F3D /* AppSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E14227125043FE500DB5F3D /* AppSettingsService.swift */; };
 		7E25B2A925002B37009CA376 /* UIColor+ProjectColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E25B2A825002B37009CA376 /* UIColor+ProjectColors.swift */; };
 		7EA52A2025001B7B0065CA3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA52A1F25001B7B0065CA3E /* AppDelegate.swift */; };
@@ -25,8 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E01F7592506E11B007574E2 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		7E14226A2504207300DB5F3D /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
-		7E14226E25043A6000DB5F3D /* Network service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network service.swift"; sourceTree = "<group>"; };
+		7E14226E25043A6000DB5F3D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7E14227125043FE500DB5F3D /* AppSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsService.swift; sourceTree = "<group>"; };
 		7E25B2A825002B37009CA376 /* UIColor+ProjectColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ProjectColors.swift"; sourceTree = "<group>"; };
 		7EA52A1C25001B7B0065CA3E /* most.bio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = most.bio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +68,8 @@
 		7E14226C250439B400DB5F3D /* Network service */ = {
 			isa = PBXGroup;
 			children = (
-				7E14226E25043A6000DB5F3D /* Network service.swift */,
+				7E14226E25043A6000DB5F3D /* NetworkService.swift */,
+				7E01F7592506E11B007574E2 /* DownloadService.swift */,
 			);
 			path = "Network service";
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E14226B2504207300DB5F3D /* BackgroundView.swift in Sources */,
+				7E01F75A2506E11B007574E2 /* DownloadService.swift in Sources */,
 				7E25B2A925002B37009CA376 /* UIColor+ProjectColors.swift in Sources */,
 				7E14227225043FE500DB5F3D /* AppSettingsService.swift in Sources */,
 				7EA52A44250024260065CA3E /* MainProtocols.swift in Sources */,
@@ -292,7 +296,7 @@
 				7EA52A422500234C0065CA3E /* MainRouter.swift in Sources */,
 				7EA52A2425001B7B0065CA3E /* MainViewController.swift in Sources */,
 				7EDA5B552506853200F2A57F /* StorageService.swift in Sources */,
-				7E14226F25043A6000DB5F3D /* Network service.swift in Sources */,
+				7E14226F25043A6000DB5F3D /* NetworkService.swift in Sources */,
 				7EA52A2025001B7B0065CA3E /* AppDelegate.swift in Sources */,
 				7EA52A2225001B7B0065CA3E /* SceneDelegate.swift in Sources */,
 				7EA52A3C250023110065CA3E /* MainInteractor.swift in Sources */,

@@ -36,6 +36,8 @@ protocol MainPresenterProtocol: class {
     // first launch alerts
     func noInternetConnectionAtFirstLaunchAction()
     func loadModelAtFirstLaunchAction(_ handler: @escaping (() -> Void))
+    
+    func updateProgress(progress: Float, totalSize: String)
 }
 
 protocol MainConfiguratorProtocol: class {

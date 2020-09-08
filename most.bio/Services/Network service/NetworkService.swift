@@ -1,5 +1,5 @@
 //
-//  Network service.swift
+//  NetworkService.swift
 //  most.bio
 //
 //  Created by Kirill Varshamov on 06.09.2020.
@@ -93,10 +93,6 @@ class NetworkService: NetworkServiceProtocol {
             }
             dataTask?.resume()
         }
-    }
-    
-    func loadNewModel() {
-        
     }
     
     // MARK: - Internal methods

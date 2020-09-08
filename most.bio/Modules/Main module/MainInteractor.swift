@@ -8,17 +8,28 @@
 
 import Foundation
 
-class MainInteractor: MainInteractorProtocol {
+class MainInteractor: NSObject, MainInteractorProtocol {
     // MARK: - Properties
     weak var presenter: MainPresenterProtocol!
     
     lazy var networkService: NetworkServiceProtocol = NetworkService()
+    lazy var downloadService: DownloadServiceProtocol = DownloadService()
     lazy var appSettingsService: AppSettingsServiceProtocol = AppSettingsService()
+    lazy var storageService: StorageServiceProtocol = StorageService()
     
+    lazy var downloadsSession: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    }()
     
     // MARK: - Initializer
     init(presenter: MainPresenterProtocol) {
+        super.init()
+        
         self.presenter = presenter
+        
+        downloadService.downloadsSession = downloadsSession
     }
     
     // MARK: - MainInteractorProtocol methods
@@ -28,7 +39,7 @@ class MainInteractor: MainInteractorProtocol {
         if appSettingsService.savedIsFirstLaunch() {
             if networkService.isConnected {
                 // load model
-                presenter.loadModelAtFirstLaunchAction {
+                presenter.loadModelAtFirstLaunchAction { // TODO
                     self.appSettingsService.saveIsFirstLaunch(with: false)
                 }
             } else {
@@ -44,7 +55,7 @@ class MainInteractor: MainInteractorProtocol {
                 self.networkService.versionCheck { [weak self] isNewModelVersion, errorMessage in
                     if isNewModelVersion {
                         // new availible
-                        self?.presenter.loadNewModelVersionAction()
+                        self?.presenter.loadNewModelVersionAction() // TODO
                     } else {
                         // old is actual
                         self?.presenter.router.transmitToLoadSampleController()
@@ -61,5 +72,36 @@ class MainInteractor: MainInteractorProtocol {
             }
         }
 
+    }
+}
+
+extension MainInteractor: URLSessionDownloadDelegate {
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        
+        guard let sourceURL = downloadTask.originalRequest?.url else {
+            return
+        }
+                
+        storageService.saveNewModel(sourceURL, location)
+        
+        downloadService.task = nil
+        
+        // Transition to Sample screen
+        DispatchQueue.main.async {
+            self.presenter.router.transmitToLoadSampleController()
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        downloadService.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        
+        let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
+        
+        // Update progress view
+        DispatchQueue.main.async {
+            self.presenter.updateProgress(progress: self.downloadService.progress, totalSize: totalSize)
+        }
     }
 }
